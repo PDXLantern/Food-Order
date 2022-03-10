@@ -8,6 +8,12 @@ public class Spicy extends Item {
         spicy_name = null;
         spicy_des = null;
     }
+    Spicy(Spicy rhs){
+        super(rhs.item_name, rhs.item_des, rhs.item_price, rhs.item_status);
+        spicy_level = rhs.spicy_level;
+        spicy_name = rhs.spicy_name;
+        spicy_des = rhs.spicy_des;
+    }
     Spicy(int rhs_spicy_level, String rhs_spicy_name, String rhs_spicy_des, String rhs_item_name, String rhs_item_des, float rhs_item_price, boolean rhs_item_status)
     {
         super(rhs_item_name, rhs_item_des, rhs_item_price, rhs_item_status);

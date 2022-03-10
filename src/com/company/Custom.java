@@ -21,7 +21,7 @@ public class Custom extends Item {
     {
         super(rhs.item_name, rhs.item_des, rhs.item_price, rhs.item_status);
         fields_size = 0;
-        fields_max = 0;
+        fields_max = 10;
         custom_fields = new String[fields_max];
         copy_custom_fields(rhs.custom_fields, rhs.fields_size, 0);
     }
@@ -118,7 +118,7 @@ public class Custom extends Item {
     {
         if(fields_size > fields_max)
             return false;
-        custom_fields[fields_size] = new String(rhs_custom);
+        custom_fields[fields_size] = rhs_custom;
         fields_size = fields_size + 1;
         return true;
     }
@@ -154,7 +154,7 @@ public class Custom extends Item {
         return shift_custom_fields(index + 1);
     }
     protected  boolean copy_custom_fields(String [] rhs, int rhs_fields_size, int count){
-        if(count > rhs_fields_size)
+        if(count == rhs_fields_size)
         {
            return true;
         }

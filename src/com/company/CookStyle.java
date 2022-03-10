@@ -7,6 +7,11 @@ public class CookStyle extends Item {
         cooking_style = null;
         cooking_temp = 0;
     }
+    CookStyle(CookStyle rhs){
+        super(rhs.item_name, rhs.item_des, rhs.item_price, rhs.item_status);
+        cooking_style = rhs.cooking_style;
+        cooking_temp = rhs.cooking_temp;
+    }
     CookStyle(String rhs_cooking_style, int rhs_cooking_temp, String rhs_item_name, String rhs_item_des, float rhs_item_price, boolean rhs_item_status)
     {
         super(rhs_item_name, rhs_item_des, rhs_item_price, rhs_item_status);
