@@ -1,5 +1,6 @@
 package com.company;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 abstract class Item {
@@ -13,8 +14,8 @@ abstract class Item {
     }
     Item(String rhs_item_name, String rhs_item_des, float rhs_item_price, boolean rhs_item_status)
     {
-        item_name = new String (rhs_item_name);
-        item_des = new String (rhs_item_des);
+        item_name = rhs_item_name;
+        item_des = rhs_item_des;
         item_price = rhs_item_price;
         item_status = rhs_item_status;
     }
@@ -134,6 +135,32 @@ abstract class Item {
             return valid_boolean_input();
         }
         return user_boolean;
+    }
+    public boolean compare(String rhs)
+    {
+        return compare_item_name(rhs);
+    }
+    public boolean compare_item_name(String rhs)
+    {
+        if(rhs != null){
+            String rhs_lower_case = rhs.toLowerCase(Locale.ROOT);
+            String rhs_no_spaces = rhs_lower_case.replaceAll("\\s+","");
+
+            String item_name_lower_case = item_name.toLowerCase(Locale.ROOT);
+            String item_name_no_spaces = item_name_lower_case.replaceAll("\\s+", "");
+
+            return item_name_no_spaces.equals(rhs_no_spaces);
+        }
+        return false;
+    }
+    public String [] item_tag(){
+        if(item_name != null)
+        {
+            String copy_name = item_name;
+            String [] item_tag_array = copy_name.split(" ");
+            return item_tag_array;
+        }
+        return null;
     }
     // item vars
     protected String item_name;

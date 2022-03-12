@@ -23,3 +23,44 @@ System.out.println("Custom");
         System.out.println();
         test_cook_style.update();
         test_cook_style.display();
+
+
+
+
+
+        Custom test_custom;
+        test_custom = new Custom("Tomatoes", "Pizza", "Chicken Pan Pizza", 20.99f, true);
+        Node test_node = new Node();
+        test_node.insert(test_custom);
+
+        Spicy test_spicy;
+        test_spicy = new Spicy(5, "Habanero", "Super Spicy Dry Sauce", "Wings", "8 Piece Boneless Wings", 10.99f, true);
+        Node test_node2 = new Node();
+        test_node2.insert(test_spicy);
+
+        CookStyle test_cook_style;
+        test_cook_style = new CookStyle("Well Done", 145, "New York Steak", "Delicious Fresh Steak",  40.99f, true);
+        Node test_node3 = new Node();
+        test_node3.insert(test_cook_style);
+
+        List test_list = new List();
+        test_list.insert(test_node3);
+        test_list.insert(test_node2);
+        test_list.insert(test_node);
+
+
+        //test_list.remove("Pizza");
+        //test_list.remove("wings");
+        //test_list.remove("new york steak");
+        Menu test_menu = new Menu();
+        test_menu.insert(test_list);
+        test_menu.tags();
+        test_menu.display();
+
+        Order test_order = new Order();
+
+        System.out.println();
+
+        test_order.add(test_menu.select_menu_items());
+        System.out.println();
+        test_order.display();

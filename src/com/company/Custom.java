@@ -9,13 +9,12 @@ public class Custom extends Item {
         fields_size = 0;
         fields_max = 100;
     }
-    Custom(String rhs_custom, String rhs_item_name, String rhs_item_des, float rhs_item_price, boolean rhs_item_status)
+    Custom(String rhs_item_name, String rhs_item_des, float rhs_item_price, boolean rhs_item_status)
     {
         super(rhs_item_name, rhs_item_des, rhs_item_price, rhs_item_status);
         fields_size = 0;
         fields_max = 10;
         custom_fields = new String[fields_max];
-        insert(rhs_custom);
     }
     Custom(Custom rhs)
     {

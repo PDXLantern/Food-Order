@@ -4,33 +4,18 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        System.out.println("Welcome to Northwest Food Carts!");
+        Menu pizza_place = new Menu();
+        pizza_place.load_file("Pizza.txt");
+        pizza_place.display();
         /**
-        Custom test_custom;
-        test_custom = new Custom("Tomatoes", "Pizza", "Chicken Pan Pizza", 20.99f, true);
-        test_custom.display();
-        Node test_node = new Node();
-        test_node.insert(test_custom);
-        test_node.display();
-        test_node.custom_data.update();
-        test_node.display();
+        Menu wings_place = new Menu();
+        wings_place.load_file("Wings.txt");
+        Menu steaks_place = new Menu();
+        steaks_place.load_file("Steaks.txt");
          **/
-        /**
-        Spicy test_spicy;
-        test_spicy = new Spicy(5, "Habanero", "Super Spicy Dry Sauce", "Wings", "8 Piece Boneless Wings", 10.99f, true);
-        test_spicy.display();
-        Node test_node2 = new Node();
-        test_node2.insert(test_spicy);
-        test_node2.display();
-         **/
-        CookStyle test_cook_style;
-        test_cook_style = new CookStyle("Well Done", 145, "New York Steak", "Delicious Fresh Steak",  40.99f, true);
-        test_cook_style.display();
-        Node test_node3 = new Node();
-        test_node3.insert(test_cook_style);
-        test_node3.display();
-        test_node3.remove();
-        System.out.println("Display After Remove");
-        test_node3.display();
+        //Order user = new Order();
+
 
     }
 }

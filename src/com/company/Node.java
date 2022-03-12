@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Locale;
+
 public class Node {
     Node()
     {
@@ -20,14 +22,19 @@ public class Node {
     }
     public boolean link_next(Node rhs)
     {
-        next = new Node(rhs);
+        next = (rhs);
         return true;
+    }
+    public Node go_next()
+    {
+        if(next != null)
+            return next;
+        return null;
     }
     public boolean display()
     {
         if(custom_data != null || spicy_data != null || cook_style_data != null)
         {
-            System.out.println("Node Data:");
             if(custom_data != null)
                 return custom_data.display();
             if(spicy_data != null)
@@ -87,6 +94,36 @@ public class Node {
             }
         }
         return false;
+    }
+    public boolean compare(String rhs){
+        if(custom_data != null)
+        {
+            return custom_data.compare(rhs);
+        }
+        if(spicy_data != null)
+        {
+            return spicy_data.compare(rhs);
+        }
+        if(cook_style_data != null)
+        {
+            return cook_style_data.compare(rhs);
+        }
+        return false;
+    }
+    public  String [] node_tags (){
+        if(custom_data != null)
+        {
+            return custom_data.item_tag();
+        }
+        if(spicy_data != null)
+        {
+            return spicy_data.item_tag();
+        }
+        if(cook_style_data != null)
+        {
+            return cook_style_data.item_tag();
+        }
+        return null;
     }
     // Node Var
     protected Node next;
