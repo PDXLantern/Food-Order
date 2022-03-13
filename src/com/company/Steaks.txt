@@ -1,1 +1,19 @@
-3;
+3
+Rare
+130
+New York Strip Steak
+Delicious New York Strip Cut Steak Served with Mash potatoes.
+19.99
+TRUE
+Medium Rare
+140
+Chicago Tenderloin Steak
+Chicago Cut Steak Served with Mash potatoes.
+24.99
+TRUE
+Medium
+150
+California PorterHouse
+T-Bone Cut Steak Served with Mash potatoes.
+29.99
+TRUE

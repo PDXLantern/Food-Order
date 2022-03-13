@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Menu {
     Menu(){
-        main_menu = null;
+        main_menu = new List();
+        main_menu_size = 0;
         menu_tags_size = 0;
         menu_tags = new String[100];
     }
@@ -19,9 +20,23 @@ public class Menu {
         try {
             File myObj = new File(data_file_name);
             Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
+            int class_type = myReader.nextInt();
+            switch (class_type) {
+                case 1 -> {
+                    myReader.nextLine();
+                    create_custom_menu(myReader);
+                    break;
+                }
+                case 2 -> {
+                    myReader.nextLine();
+                    create_spicy_menu(myReader);
+                    break;
+                }
+                case 3 -> {
+                    myReader.nextLine();
+                    create_cookstyle_menu(myReader);
+                    break;
+                }
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -30,14 +45,129 @@ public class Menu {
         }
         return true;
     }
+    public boolean create_custom_menu(Scanner data_reader){
+        if (!data_reader.hasNextLine()) {
+            return true;
+        }
+        String temp_item_name = null;
+        if(data_reader.hasNextLine()) {
+            temp_item_name = data_reader.nextLine();
+        }
+        String temp_item_des = null;
+        if(data_reader.hasNextLine()) {
+            temp_item_des = data_reader.nextLine();
+        }
+        float temp_item_price = 0;
+        if(data_reader.hasNextLine()) {
+            temp_item_price = Float.parseFloat(data_reader.nextLine());
+        }
+        boolean temp_item_status = false;
+        if(data_reader.hasNextLine()) {
+            temp_item_status = Boolean.parseBoolean((data_reader.nextLine()));
+        }
+        Custom temp_custom= new Custom(temp_item_name, temp_item_des, temp_item_price, temp_item_status);
+        Node temp_node = new Node();
+        temp_node.insert(temp_custom);
+        main_menu.insert(temp_node);
+        main_menu_size +=1;
+        if(data_reader.hasNextLine()){
+            create_custom_menu(data_reader);
+        }
+        return true;
+    }
+    public boolean create_spicy_menu(Scanner data_reader){
+        if (!data_reader.hasNextLine()) {
+            return true;
+        }
+        int temp_spicy_level = 0;
+        if(data_reader.hasNextLine()) {
+            temp_spicy_level = data_reader.nextInt();
+        }
+        data_reader.nextLine();
+        String temp_spicy_name = null;
+        if(data_reader.hasNextLine()) {
+            temp_spicy_name = data_reader.nextLine();
+        }
+        String temp_spicy_des = null;
+        if(data_reader.hasNextLine()) {
+            temp_spicy_des = data_reader.nextLine();
+        }
+        String temp_item_name = null;
+        if(data_reader.hasNextLine()) {
+            temp_item_name = data_reader.nextLine();
+        }
+        String temp_item_des = null;
+        if(data_reader.hasNextLine()) {
+            temp_item_des = data_reader.nextLine();
+        }
+        float temp_item_price = 0;
+        if(data_reader.hasNextLine()) {
+            temp_item_price = Float.parseFloat(data_reader.nextLine());
+        }
+        boolean temp_item_status = false;
+        if(data_reader.hasNextLine()) {
+            temp_item_status = Boolean.parseBoolean((data_reader.nextLine()));
+        }
+        Spicy temp_spicy= new Spicy(temp_spicy_level, temp_spicy_name, temp_spicy_des, temp_item_name, temp_item_des, temp_item_price, temp_item_status);
+        Node temp_node = new Node();
+        temp_node.insert(temp_spicy);
+        main_menu.insert(temp_node);
+        main_menu_size +=1;
+        if(data_reader.hasNextLine()){
+            create_spicy_menu(data_reader);
+        }
+        return true;
+    }
+    public boolean create_cookstyle_menu(Scanner data_reader){
+        if (!data_reader.hasNextLine()) {
+            return true;
+        }
+        String temp_style_name = null;
+        if(data_reader.hasNextLine()) {
+            temp_style_name = data_reader.nextLine();
+        }
+        int temp_temp = 0;
+        if(data_reader.hasNextLine()) {
+            temp_temp = data_reader.nextInt();
+        }
+        String temp_spicy_des = null;
+        if(data_reader.hasNextLine()) {
+            temp_spicy_des = data_reader.nextLine();
+        }
+        String temp_item_name = null;
+        if(data_reader.hasNextLine()) {
+            temp_item_name = data_reader.nextLine();
+        }
+        String temp_item_des = null;
+        if(data_reader.hasNextLine()) {
+            temp_item_des = data_reader.nextLine();
+        }
+        float temp_item_price = 0;
+        if(data_reader.hasNextLine()) {
+            temp_item_price = Float.parseFloat(data_reader.nextLine());
+        }
+        boolean temp_item_status = false;
+        if(data_reader.hasNextLine()) {
+            temp_item_status = Boolean.parseBoolean((data_reader.nextLine()));
+        }
+        CookStyle temp_cook_style= new CookStyle(temp_style_name, temp_temp, temp_item_name, temp_item_des, temp_item_price, temp_item_status);
+        Node temp_node = new Node();
+        temp_node.insert(temp_cook_style);
+        main_menu.insert(temp_node);
+        main_menu_size +=1;
+        if(data_reader.hasNextLine()){
+            create_cookstyle_menu(data_reader);
+        }
+        return true;
+    }
     public boolean display(){
         if(main_menu != null)
         {
-            System.out.println("Menu");
-            main_menu.display();
             System.out.println();
-            System.out.println("Menu Tags");
-            menu_display_tags(0);
+            System.out.println("Menu:");
+            main_menu.display();
+            //System.out.println("Menu Tags");
+            //menu_display_tags(0);
             return true;
         }
         System.out.println("No Menu Data");
@@ -94,21 +224,34 @@ public class Menu {
     }
     public List select_menu_items(){
         main_menu.display();
-        System.out.println("Select Items from Menu");
+        System.out.println();
+        System.out.println("Enter the Full Item Name from Menu");
         List select_from_menu = new List();
 
         Scanner input = new Scanner(System.in);
         String menu_input = input.nextLine();
-
-        if(select_from_menu.insert(main_menu.search(menu_input)))
+        /**
+        if(select_from_menu.insert(main_menu.search(menu_input))) {
             select_from_menu.display();
+        }**/
+        Node Temp = main_menu.search(menu_input);
+        if(Temp != null) {
+            System.out.println("Would you like Edit the Item? (Y/N)");
+            String edit_cmd = input.nextLine();
+
+            if(edit_cmd.equals("Y") || edit_cmd.equals("y") || edit_cmd.equals("Yes"))
+                Temp.update();
+            select_from_menu.insert(Temp);
+        }
         else
             System.out.println("Item was not found on the Menu");
+
         return select_from_menu;
     }
 
     // Menu vars
     protected List main_menu;
+    protected int main_menu_size;
     protected String[] menu_tags;
     protected int menu_tags_size;
 }

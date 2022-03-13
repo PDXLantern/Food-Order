@@ -66,7 +66,7 @@ public class List {
                 head = head.go_next();
                 return true;
             }
-            remove(head, rhs);
+            return remove(head, rhs);
         }
         return false;
     }
@@ -103,6 +103,14 @@ public class List {
             return rhs;
         }
         return search(rhs.go_next(), rhs_string);
+    }
+    public boolean update(String rhs)
+    {
+        Node update_item = search(rhs);
+        if(update_item != null){
+            return update_item.update();
+        }
+        return false;
     }
     public boolean compare(){
         return true;

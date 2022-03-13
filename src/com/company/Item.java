@@ -43,15 +43,20 @@ abstract class Item {
         }
         // display base vars
         System.out.println("What would you like to Update: ");
-        System.out.println("1: Item Name");
-        System.out.println("2: Item Description");
-        System.out.println("3: Item Price");
-        System.out.println("4: Item Status");
+        System.out.println("1: Item Name\t\t\t\t(Manager Code Required)");
+        System.out.println("2: Item Description\t\t\t(Manager Code Required)");
+        System.out.println("3: Item Price\t\t\t\t(Manager Code Required)");
+        System.out.println("4: Item Status\t\t\t\t(Manager Code Required)");
         return true;
     }
     protected boolean item_update(int rhs)
     {
-        System.out.println("Modifying Base");
+        System.out.println("Enter Manager Code: ");
+        int user_code = valid_int_input();
+        if(user_code != 1996) {
+            System.out.println("Error:\t\t\t\t\tInvalid Code");
+            return false;
+        }
         switch (rhs) {
             case 1 -> {
                 System.out.println("Old Item Name:\t\t\t\t" + item_name);

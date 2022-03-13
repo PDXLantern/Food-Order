@@ -53,7 +53,7 @@ public class Custom extends Item {
         if (item_update_menu())
         {
             // display cooking style vars
-            if(fields_size != 0)
+            if(custom_fields != null)
             {
                 // custom update menu
                 System.out.println("5: Add Ingredient");
@@ -83,7 +83,7 @@ public class Custom extends Item {
     }
     protected boolean update_custom(int rhs)
     {
-        if(fields_size != 0)
+        if(custom_fields != null)
         {
             switch (rhs) {
                 case 5 -> {

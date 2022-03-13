@@ -1,0 +1,13 @@
+1
+Small Pizza
+8 inch personal pizza for 1 person
+9.99f
+True
+Medium Pizza
+10 inch pizza for 2 - 3 people
+19.99f
+True
+Large Pizza
+14 inch pizza for 4 - 6 people
+29.99f
+True

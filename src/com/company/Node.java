@@ -125,6 +125,22 @@ public class Node {
         }
         return null;
     }
+    public boolean update()
+    {
+        if(custom_data != null)
+        {
+            return custom_data.update();
+        }
+        if(spicy_data != null)
+        {
+            return spicy_data.update();
+        }
+        if(cook_style_data != null)
+        {
+            return cook_style_data.update();
+        }
+        return false;
+    }
     // Node Var
     protected Node next;
     protected Custom custom_data;
