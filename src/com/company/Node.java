@@ -17,6 +17,8 @@ public class Node {
                 spicy_data = new Spicy(rhs.spicy_data);
             if(rhs.cook_style_data != null)
                 cook_style_data = new CookStyle(rhs.cook_style_data);
+            if(rhs.menu_data != null)
+                menu_data = new Menu(rhs.menu_data);
             next = null;
         }
     }
@@ -40,7 +42,9 @@ public class Node {
             if(spicy_data != null)
                 return spicy_data.display();
             if(cook_style_data != null)
-                return cook_style_data.display();;
+                return cook_style_data.display();
+            if(menu_data != null)
+                return menu_data.display();
         }
         return false;
     }
@@ -68,12 +72,20 @@ public class Node {
         }
         return false;
     }
+    public boolean insert(Menu rhs){
+        if(menu_data == null){
+            menu_data = new Menu(rhs);
+            return true;
+        }
+        return false;
+    }
     public boolean remove(){
         if(custom_data != null || spicy_data != null || cook_style_data != null)
         {
             custom_data = null;
             spicy_data = null;
             cook_style_data = null;
+            menu_data = null;
         }
         return false;
     }
@@ -146,4 +158,5 @@ public class Node {
     protected Custom custom_data;
     protected Spicy spicy_data;
     protected CookStyle cook_style_data;
+    protected Menu menu_data;
 }

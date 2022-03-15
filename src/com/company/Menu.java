@@ -1,6 +1,7 @@
 package com.company;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Menu {
@@ -9,11 +10,25 @@ public class Menu {
         main_menu_size = 0;
         menu_tags_size = 0;
         menu_tags = new String[100];
+        menu_name = null;
     }
+    Menu(String rhs_menu_name){
+        main_menu = new List();
+        main_menu_size = 0;
+        menu_tags_size = 0;
+        menu_tags = new String[100];
+        menu_name = rhs_menu_name;
+    }
+
     Menu(Menu rhs)
     {
+        main_menu = new List();
+        menu_tags = new String[100];
+        menu_name = rhs.menu_name;
         // copy LLL
+        main_menu.copy(rhs.main_menu);
         // copy string array
+        menu_copy_tags(menu_tags, rhs.menu_tags, 0);
     }
     public boolean load_file(String data_file_name)
     {
@@ -187,7 +202,18 @@ public class Menu {
     public boolean search(String rhs){
         return true;
     }
-    public boolean compare(){
+    public boolean compare(String rhs){
+        if(menu_name != null){
+            if(rhs != null){
+                String rhs_lower_case = rhs.toLowerCase(Locale.ROOT);
+                String rhs_no_spaces = rhs_lower_case.replaceAll("\\s+","");
+
+                String menu_name_lower_case = menu_name.toLowerCase(Locale.ROOT);
+                String menu_name_no_spaces = menu_name_lower_case.replaceAll("\\s+", "");
+
+                return menu_name_no_spaces.equals(rhs_no_spaces);
+            }
+        }
         return true;
     }
     public boolean tags()
@@ -230,10 +256,6 @@ public class Menu {
 
         Scanner input = new Scanner(System.in);
         String menu_input = input.nextLine();
-        /**
-        if(select_from_menu.insert(main_menu.search(menu_input))) {
-            select_from_menu.display();
-        }**/
         Node Temp = main_menu.search(menu_input);
         if(Temp != null) {
             System.out.println("Would you like Edit the Item? (Y/N)");
@@ -250,6 +272,7 @@ public class Menu {
     }
 
     // Menu vars
+    protected String menu_name;
     protected List main_menu;
     protected int main_menu_size;
     protected String[] menu_tags;

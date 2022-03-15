@@ -8,14 +8,8 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         System.out.println("Welcome to Northwest Food Carts!");
-        Menu pizza_place = new Menu();
-        pizza_place.load_file("src/com/company/Pizza.txt");
-
-        Menu wings_place = new Menu();
-        wings_place.load_file("src/com/company/Wings.txt");
-
-        Menu steaks_place = new Menu();
-        steaks_place.load_file("src/com/company/Steaks.txt");
+        BST all_menus = new BST();
+        all_menus.load_menus();
 
         Order user = new Order();
         System.out.println("0. Exit Program");
@@ -23,18 +17,17 @@ public class Main {
         System.out.println("2. Display Current Order");
         System.out.println("3. Add to Order");
         System.out.println("4. Remove Order");
-        System.out.println("5. Checkout");
+        System.out.println("5. Search for Food");
+        System.out.println("6. Checkout");
 
         int cmd = valid_int_input();
 
-        while(cmd != 0 && cmd != 5)
+        while(cmd != 0 && cmd != 6)
         {
             switch (cmd) {
                 case 1 -> {
                     System.out.println("Display Menus");
-                    pizza_place.display();
-                    wings_place.display();
-                    steaks_place.display();
+                    all_menus.display();
                 }
                 case 2 -> {
                     System.out.println("Current Order");
@@ -49,13 +42,13 @@ public class Main {
                     int menu_cmd = valid_int_input();
                     switch (menu_cmd) {
                         case 1 -> {
-                            user.add(pizza_place.select_menu_items());
+                            user.add(all_menus.select("Pizza Palace"));
                         }
                         case 2 -> {
-                            user.add(wings_place.select_menu_items());
+                            user.add(all_menus.select("Blaze Wings"));
                         }
                         case 3 -> {
-                            user.add(steaks_place.select_menu_items());
+                            user.add(all_menus.select("Fancy Steaks"));
                         }
                     }
                 }
@@ -66,6 +59,10 @@ public class Main {
                         System.out.println("Item Removed");
                     else
                         System.out.println("Item Not Found");
+                }
+                case 5 -> {
+                    System.out.println("What are you in the Mood for?:");
+                    String item_remove = valid_string_input();
                 }
             }
             System.out.println();
@@ -83,6 +80,7 @@ public class Main {
             user.display();
         }
         System.out.println("Exiting Program...");
+
     }
     public static int valid_int_input()
     {

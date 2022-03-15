@@ -4,7 +4,7 @@ public class List {
     List()
     {
         head = null;
-        list_tags = null;
+        list_size = 0;
         list_tags_size = 0;
         list_tags = new String[100];
     }
@@ -42,8 +42,10 @@ public class List {
     public boolean insert(Node rhs){
         if(rhs == null)
             return false;
-        if(head == null)
+        if(head == null) {
             head = new Node(rhs);
+            list_size +=1;
+        }
         else {
             Node Temp = head;
             insert(Temp, rhs);
@@ -54,6 +56,7 @@ public class List {
         if(current.go_next() == null){
             Node Temp = new Node(rhs);
             current.link_next(Temp);
+            list_size +=1;
             return true;
         }
         return insert(current.go_next(), rhs);
@@ -139,8 +142,16 @@ public class List {
         list_tags_size += 1;
         return list_copy_tags(lhs, rhs, count + 1);
     }
+    public boolean display_tags(){
+        if(list_tags != null){
+            System.out.println(list_tags[0]);
+            return true;
+        }
+        return false;
+    }
     // List vars
     protected Node head;
     protected String [] list_tags;
     protected int list_tags_size;
+    protected int list_size;
 }
