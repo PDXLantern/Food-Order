@@ -69,8 +69,11 @@ public class TreeNode {
         }
         return false;
     }
-    public  String [] node_tags (){
-        return null;
+    public boolean search_tags (String rhs){
+        if(menu_data != null){
+            return menu_data.search_tags(rhs);
+        }
+        return false;
     }
     public boolean update()
     {

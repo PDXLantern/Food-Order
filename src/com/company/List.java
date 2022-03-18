@@ -27,7 +27,6 @@ public class List {
         {
             return display(head);
         }
-        System.out.println("No List Data");
         return false;
     }
     protected boolean display(Node rhs){

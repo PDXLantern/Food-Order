@@ -30,7 +30,7 @@ public class Menu {
         // copy string array
         menu_copy_tags(menu_tags, rhs.menu_tags, 0);
     }
-    public boolean load_file(String data_file_name)
+    public void load_file(String data_file_name)
     {
         try {
             File myObj = new File(data_file_name);
@@ -40,17 +40,14 @@ public class Menu {
                 case 1 -> {
                     myReader.nextLine();
                     create_custom_menu(myReader);
-                    break;
                 }
                 case 2 -> {
                     myReader.nextLine();
                     create_spicy_menu(myReader);
-                    break;
                 }
                 case 3 -> {
                     myReader.nextLine();
                     create_cookstyle_menu(myReader);
-                    break;
                 }
             }
             myReader.close();
@@ -58,7 +55,6 @@ public class Menu {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return true;
     }
     public boolean create_custom_menu(Scanner data_reader){
         if (!data_reader.hasNextLine()) {
@@ -145,10 +141,7 @@ public class Menu {
         if(data_reader.hasNextLine()) {
             temp_temp = data_reader.nextInt();
         }
-        String temp_spicy_des = null;
-        if(data_reader.hasNextLine()) {
-            temp_spicy_des = data_reader.nextLine();
-        }
+        data_reader.nextLine();
         String temp_item_name = null;
         if(data_reader.hasNextLine()) {
             temp_item_name = data_reader.nextLine();
@@ -179,10 +172,8 @@ public class Menu {
         if(main_menu != null)
         {
             System.out.println();
-            System.out.println("Menu:");
+            System.out.println("Menu:\t\t\t\t\t\t" + menu_name);
             main_menu.display();
-            //System.out.println("Menu Tags");
-            //menu_display_tags(0);
             return true;
         }
         System.out.println("No Menu Data");
@@ -200,7 +191,7 @@ public class Menu {
         return false;
     }
     public boolean search(String rhs){
-        return true;
+        return search_tags(rhs);
     }
     public boolean compare(String rhs){
         if(menu_name != null){
@@ -223,6 +214,26 @@ public class Menu {
             return menu_copy_tags(menu_tags, temp, 0);
         }
         return false;
+    }
+    public boolean search_tags(String rhs){
+        if(menu_tags != null){
+            String rhs_lower_case = rhs.toLowerCase(Locale.ROOT);
+            String rhs_no_spaces = rhs_lower_case.replaceAll("\\s+","");
+            return search_tags(rhs_no_spaces, 0);
+        }
+        return false;
+    }
+    public boolean search_tags(String rhs, int count){
+        if(menu_tags_size == count)
+            return false;
+        String new_tag = menu_tags[count];
+        String tag_lower_case = new_tag.toLowerCase(Locale.ROOT);
+        String tag_no_spaces = tag_lower_case.replaceAll("\\s+", "");
+        if(tag_no_spaces.equals(rhs)){
+            display();
+            return true;
+        }
+        return search_tags(rhs, count + 1);
     }
     public boolean menu_copy_tags(String [] lhs, String [] rhs, int count)
     {

@@ -31,7 +31,10 @@ public class Main {
                 }
                 case 2 -> {
                     System.out.println("Current Order");
-                    user.display();
+                    if(user.display())
+                        System.out.println();
+                    else
+                        System.out.println("Nothing in your Current Order!");
                 }
                 case 3 -> {
                     System.out.println("Add to Order");
@@ -61,8 +64,14 @@ public class Main {
                         System.out.println("Item Not Found");
                 }
                 case 5 -> {
-                    System.out.println("What are you in the Mood for?:");
+                    System.out.println("What are you in the Mood for? Ex.(Wings, Pizza, Steaks):");
                     String item_remove = valid_string_input();
+                    if(all_menus.search(item_remove)) {
+                        System.out.println();
+                        System.out.println("Try this Menu!");
+                    }
+                    else
+                        System.out.println("No Menu Found!");
                 }
             }
             System.out.println();
@@ -71,7 +80,8 @@ public class Main {
             System.out.println("2. Display Current Order");
             System.out.println("3. Add to Order");
             System.out.println("4. Remove Order");
-            System.out.println("5. Checkout");
+            System.out.println("5. Search for Food");
+            System.out.println("6. Checkout");
             System.out.println();
             cmd = valid_int_input();
         };
